@@ -1,0 +1,70 @@
+POST http://localhost:9090/register
+Content-Type: application/json
+
+{
+  "username": "yourUsername2",
+  "password": "yourPassword2",
+  "email": "yourEmail2@example.com",
+  "name": "Your Name2"
+}
+
+###
+
+POST http://localhost:9090/login
+Content-Type: application/json
+
+{
+  "email": "yourEmail@example.com",
+  "password": "yourPassword"
+
+}
+###
+
+POST http://localhost:9090/login
+Content-Type: application/json
+
+{
+  "email": "yourEmail2@example.com",
+  "password": "yourPassword2"
+
+}
+###
+
+GET http://localhost:9090/get_user_and_profile
+Content-Type: application/json  
+
+{
+  "token":"d6bfd01ab5f4410bfe1ec3ce1fa1eb3c63db6bf17f22acd3a9cbe659d371263e"
+}
+
+###
+
+POST http://localhost:9090/update_profile_data
+Content-Type: application/json
+
+{
+  "token":"e592c8e6448de6bbf6ebe6cfa2e91d345227d8b905e22264be888886dea78099",
+  "bio": "Technology enthusiast with 5+ years of experience in product leadership.",
+  "currentPost":"CTO",
+  "pastWork":[
+    {
+      "company":"Microsoft",
+      "position":"CTO",
+      "years":"2+"
+    }
+  ],
+  "education":[
+    {
+      "school":"IIIT",
+      "degree":"B.Tech",
+      "fieldOfStudy":"2015-2019"
+    }
+  ]
+}
+
+###
+GET http://localhost:9090/user/get_all_users
+
+###
+GET http://localhost:9090/get_posts
+
