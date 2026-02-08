@@ -1,11 +1,12 @@
-import express from 'express';
-import cors from 'cors';
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-import postRoutes from './routes/post.routes.js'; 
-import userRoutes from './routes/user.routes.js'; 
+import express from "express";
+import cors from "cors";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
 
-dotenv.config();
+import postRoutes from "./routes/post.routes.js";
+import userRoutes from "./routes/user.routes.js";
+
+dotenv.config(); // ONLY this line
 
 const app = express();
 
@@ -13,15 +14,19 @@ app.use(cors());
 app.use(express.json());
 app.use(postRoutes);
 app.use(userRoutes);
-app.use(express.static("uploads")); 
-
+app.use(express.static("uploads"));
 
 const start = async () => {
-    const connectDB = await mongoose.connect("mongodb+srv://abhi14032004_db_user:b3OL162duefvtoao@meshlink.pxw5pzq.mongodb.net/sample_mflix?retryWrites=true&w=majority&appName=MeshLink"
-    )
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log("MongoDB connected");
+
     app.listen(9090, () => {
-        console.log("Server is running on port 9090");
-    })
-}
+      console.log("Server is running on port 9090");
+    });
+  } catch (error) {
+    console.error("MongoDB connection failed:", error.message);
+  }
+};
 
 start();
